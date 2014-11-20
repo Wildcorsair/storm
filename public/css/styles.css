@@ -1,0 +1,215 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: 100%;
+    min-height: 100%;
+    font-family: Arial, Tahoma, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+input, button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#page-wrapper {
+    width: 100%;
+    min-width: 1000px;
+    min-height: 100%;
+    margin: 0 auto;
+    margin-bottom: -50px;
+    /*border: 1px solid #ccc;*/
+    /*background-color: #90c8ec;*/
+}
+
+#auth-block {
+    width: 290px;
+    height: 205px;
+    background-color: #ccd;
+    /*border: 1px solid #aaa;*/
+    margin: 250px auto;
+    font-size: 1em;
+    /*padding: 25px;*/
+}
+
+.window-frame > div.workspace {
+    height: 300px;
+}
+
+#header {
+    height: 100px;
+    position: relative;
+    background-color: #39acf4; /*#128ad7*/
+}
+#logo {
+    width: 150px;
+    height: 40px;
+    color: #fff;
+    font-size: 3em;
+    margin: 30px;
+    position: absolute;
+    font-weight: bold;
+}
+#shadow {
+    height: 1px;
+    background-color: #34a9f3;
+}
+#menu {
+    height: 45px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 1px;
+    background-color: #128ad7; /*#0b6aa6*/
+}
+#menu ul, #sidebar ul {
+    margin: 0;
+    padding: 0;
+}
+#menu li {
+    padding: 0 10px;
+    height: 45px;
+    line-height: 45px;
+    display: block;
+    float: left;
+    /*display: inline-block;*/
+    position: relative;
+    cursor: pointer;
+}
+
+#menu li:hover {
+    background-color: #cdcdcd;
+}
+#menu li a {
+    color: #fff;
+    font-size: 1.2em;
+    display: block;
+    text-decoration: none;
+}
+#menu li #sub-menu1 li{
+    color: #fff;
+    display: block;
+    padding-left: 25px;
+    width: 155px; 
+}
+#menu li #sub-menu1 li:hover {
+    background-color: #acacac;
+}
+
+#menu li:hover > #sub-menu1 {
+    display: block;
+}
+#sub-menu1 {
+    display: none;
+    left: 0;
+    top: 45px;
+    width: 190px;
+    position: absolute;
+    background-color: #cdcdcd;
+    z-index: 100;
+}
+#workspace {
+    width: 100%;
+    height: 100%;
+    min-width: 1000px;
+    position: relative;
+    /*border: 1px solid #444;*/
+}
+#sidebar {
+    width: 180px;
+    padding: 10px;
+    height: 100%;
+    background-color: #39acf4;
+    float: left;
+    color: #555;
+    z-index: 1;
+}
+#sidebar li {
+    padding: 5px 15px;
+}
+#content {
+    height: 100%;
+    /*width: 100%;*/
+    min-width: 770px;
+    margin-left: 210px;
+    padding: 10px;
+    background-color: #ddd;
+}
+#clear {
+    width: 100%;
+    height: 50px;
+}
+#footer {
+    width: 100%;
+    min-width: 1000px;
+    height: 40px;
+    padding: 5px 0;
+    margin: 0 auto;
+    background-color: #39acf4; 
+}
+#copyright {
+    color: #fff;
+    height: 20px;
+    width: 200px;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+/*
+* Windows styles    
+*/
+.window-frame.taskAdd {
+    top: 80px;
+    left: 250px;
+    width: 925px;
+    height: 375px;
+    position: absolute;
+}
+.window-frame.taskAdd fieldset#subscriberInfo {
+    width: 430px;
+    height: 215px;
+    float: left;
+}
+.window-frame.taskAdd fieldset#taskInfo {
+    /*margin-top: 7px;*/
+    width: 370px;
+    height: 215px;
+    float: right;
+}
+
+.window-frame.taskEdit {
+    top: 80px;
+    left: 250px;
+    width: 925px;
+    height: 485px;
+    position: absolute;
+}
+.window-frame.taskEdit fieldset#subscriberInfo {
+    width: 840px;
+    height: 90px;
+    float: left;
+}
+.window-frame.taskEdit fieldset#taskInfo {
+    margin-top: 7px;
+    width: 400px;
+    height: 210px;
+    float: left;
+}
+.window-frame.taskEdit fieldset#repairInform {
+    margin-top: 7px;
+    width: 400px;
+    height: 210px;
+    margin-left: 7px;
+    float: right;
+    /*background-color: #347898;*/
+}
+.window-frame textarea {
+    margin-top: 7px;
+    width: 335px;
+    height: 98px;
+    resize: none;
+}
+.window-frame div.nlabel {
+    float: left;
+}
