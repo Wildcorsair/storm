@@ -124,7 +124,7 @@
                 <tr>
                     <td colspan='2'>
                         Отметка о ремонте:<br />
-                        <textarea name='repairNote'></textarea>
+                        <textarea name='repairNote'><?php echo $data->frepairNote; ?></textarea>
                     </td>
                 </tr>
                 <tr>    
@@ -132,7 +132,8 @@
                     <td>
                         <div id='1' class='dt-picker'>
                             <input class='' type='text' 
-                                name='endDateTime' value=''>
+                                name='endDateTime' 
+                                value='<?php echo $this->model->dateTimeConvert($data->fendDateTime); ?>'>
                             <div class='dt-btn ico-date'></div>
                             <div id='1' class='dt-conteiner'>
                                 <button class='btn-tb ico-prev f-left'></button>

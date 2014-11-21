@@ -247,9 +247,9 @@ class ConsoleModel extends BDatabase {
                         `fphoneNumber`,
                         `fstartDateTime`
                   FROM `stm_tasks`
-                  WHERE `fid` = :i
+                  WHERE `fphoneNumber` = :i
                   LIMIT :i, :i';
-        $cond = array(22, 0, 30);
+        $cond = array(62121, 0, 30);
         $dataSet = $this->selectBySql($query, $cond);
         echo $dataSet[0]->fphoneNumber.'<br />';
         echo $dataSet[0]->fstartDateTime.'<br />';

@@ -83,6 +83,7 @@ $(document).ready(function() {
     $('#sub-menu1').on('click', '#active', function() {
         getActiveTasks();
     });
+    
     $('#content').on('click', '.btn-tb.ico-edit', function(e) {
         var myEvent = e || window.e;
         var btn = myEvent.target || myEvent.srcElement;
@@ -122,8 +123,10 @@ $(document).ready(function() {
 }); //End of ready
 
 function getActiveTasks() {
+    var curPage = $('span[class="btn f-left active"]').html();
+    //alert($(curPage).html());
     $.ajax({
-            url: 'http://storm/console/activeTasks',
+            url: 'http://storm/console/activeTasks?curPage='+curPage,
            type: 'GET',
         success: function(data) {
                     $('#sub-menu1').remove();

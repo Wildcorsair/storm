@@ -8,7 +8,8 @@ class Console extends BController {
         $this->render('console');
     }
 
-    public function activeTasks($page) {
+    public function activeTasks($page2) {
+        $page = $_GET['curPage'];
         if (is_numeric($page)) {
             $this->currentPage = $page;
         } else {
