@@ -97,9 +97,9 @@ input, button {
     background-color: #acacac;
 }
 
-#menu li:hover > #sub-menu1 {
+/*#menu li:hover > #sub-menu1 {
     display: block;
-}
+}*/
 #sub-menu1 {
     display: none;
     left: 0;
@@ -109,6 +109,7 @@ input, button {
     background-color: #cdcdcd;
     z-index: 100;
 }
+
 #workspace {
     width: 100%;
     height: 100%;
@@ -126,6 +127,7 @@ input, button {
     z-index: 1;
 }
 #sidebar li {
+    list-style-type: none;
     padding: 5px 15px;
 }
 #content {
@@ -135,6 +137,7 @@ input, button {
     margin-left: 210px;
     padding: 10px;
     background-color: #ddd;
+    z-index: 70;
 }
 #clear {
     width: 100%;

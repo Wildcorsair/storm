@@ -22,7 +22,7 @@
         <div id='shadow'></div>
         <div id='menu'>
             <ul>
-                <li>
+                <li id='requests' onmouseover='showSubMenu();' onmouseout='hideSubMenu();'>
                     <a href='#'>Заявки</a>
                     <ul id='sub-menu1'>
                         <li id='active'>Активные</li>

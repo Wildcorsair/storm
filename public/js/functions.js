@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('button[name="taskAdd"]').click(function() {
+    $('#content').on('click', 'button[name="taskAdd"]', function() {
         if (!$('div').is('.window-frame')) {
             $.ajax({
                     url: 'http://storm/console/taskAddFrm',
@@ -100,25 +100,15 @@ $(document).ready(function() {
             });
         }        
     });
-
-    /*$('.btn-tb').click(function(event) {
-        event.preventDefault();
-        event = event || window.event;
-        var link = event.target || event.srcElement;
-        
-        var link = $('.btn-tb').attr('href');
-        var param = $('.btn-tb').data('value');
-        if (!$('div').is('.window-frame')) {
-            $.ajax({
-                    //url: 'http://storm/console/taskEditFrm?id=8',
-                    url: link,
-                   type: 'GET',
-                   //data: 'id='+param,
-                success: function (data) {
-                            $('#content').append(data);
-                         }
-            });
-        }
+    /*$('#menu').on('mouseover', 'li[id="requests"]', function() {
+        console.log('Навел!');
+        /*$('#sub-menu1').css({display:'block'});
+        $('#sub-menu1').css({zIndex:'100'});
+        $('#sub-menu1').show();
+    });
+    $('#menu').on('mouseout', 'li[id="requests"]', function() {
+        console.log('Убрал нах...!');
+        $('#sub-menu1').css({display:'none'});
     });*/
 }); //End of ready
 
@@ -138,4 +128,16 @@ function getActiveTasks() {
                     console.log('Script error!');
                  }        
     });
+}
+
+function showSubMenu() {
+    $('li').append("<ul id='sub-menu1'>\
+                        <li id='active'>Активные</li>\
+                        <li id='closed'>Закрытые</li>\
+                    </ul>");
+    $('#sub-menu1').css({display:'block'});
+}
+function hideSubMenu() {
+    console.log('Убрал нах...!');
+    $('#sub-menu1').css({display:'none'});
 }

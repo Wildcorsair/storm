@@ -13,7 +13,7 @@ class Console extends BController {
         if (is_numeric($page)) {
             $this->currentPage = $page;
         } else {
-            $this->currentPage = 3;
+            $this->currentPage = 1;
         }
         $this->render('active', true);
     }
