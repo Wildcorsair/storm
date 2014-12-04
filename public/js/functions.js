@@ -2,6 +2,7 @@ $(document).ready(function() {
     $('#content').on('click', 'button[name="taskAdd"]', function() {
         if (!$('div').is('.window-frame')) {
             $.ajax({
+                    //url: 'http://acs-storm/console/taskAddFrm',
                     url: 'http://storm/console/taskAddFrm',
                 success: function (data) {
                             $('#content').append(data);
@@ -27,6 +28,7 @@ $(document).ready(function() {
         var startDateTime = $('input[name="startDateTime"]').val();
 
         $.ajax({
+            //url: 'http://acs-storm/console/taskAdd',
             url: 'http://storm/console/taskAdd',
            type: 'POST',
            data: {
@@ -57,6 +59,7 @@ $(document).ready(function() {
         var endDateTime = $('input[name="endDateTime"]').val();
 
         $.ajax({
+            //url: 'http://acs-storm/console/taskUpdate',
             url: 'http://storm/console/taskUpdate',
            type: 'POST',
            data: {
@@ -71,7 +74,7 @@ $(document).ready(function() {
                  },
         success: function() {
                     $('#taskAddFrm').remove();
-                    getActiveTasks();
+                    getActiveTasks('activeTasks', null);
                  },
           error: function() {
                     console.log('Script error!');
@@ -80,10 +83,21 @@ $(document).ready(function() {
         return;
     });
     
-    $('#sub-menu1').on('click', '#active', function() {
-        getActiveTasks();
+    $('#requests-submenu').on('click', '#active', function() {
+        getActiveTasks('activeTasks', 1);
     });
     
+    $('#requests-submenu').on('click', '#closed', function() {
+        getClosedTasks('closedTasks', 1);
+    });
+
+    $('#content').on('click', '.page-num', function(e) {
+        var myEvent = e || window.e;
+        var myTarget = myEvent.target || myEvent.srcElement;
+        var pageNum = $(myTarget).html();
+        var tasksType = $('table').data('value');
+        getActiveTasks(tasksType, pageNum);
+    });
     $('#content').on('click', '.btn-tb.ico-edit', function(e) {
         var myEvent = e || window.e;
         var btn = myEvent.target || myEvent.srcElement;
@@ -91,6 +105,7 @@ $(document).ready(function() {
         //console.log('Working! '+id);
         if (!$('div').is('.window-frame')) {
             $.ajax({
+                    //url: 'http://acs-storm/console/taskEditFrm',
                     url: 'http://storm/console/taskEditFrm',
                    type: 'GET',
                    data: { id: id},
@@ -100,26 +115,42 @@ $(document).ready(function() {
             });
         }        
     });
-    /*$('#menu').on('mouseover', 'li[id="requests"]', function() {
-        console.log('Навел!');
-        /*$('#sub-menu1').css({display:'block'});
-        $('#sub-menu1').css({zIndex:'100'});
-        $('#sub-menu1').show();
+    $('#menu').on('mouseover', 'li[id="requests"]', function(e) {
+        var myEvent = e || window.e;
+            myEvent.stopPropagation();
+        //console.log('Навел!');
+        $('#requests-submenu').css({display:'block'});
+        //$('#requests-submenu').css({zIndex:'100'});
+        $('#requests-submenu').show();
     });
-    $('#menu').on('mouseout', 'li[id="requests"]', function() {
-        console.log('Убрал нах...!');
-        $('#sub-menu1').css({display:'none'});
-    });*/
+    $('#menu').on('mouseout', 'li[id="requests"]', function(e) {
+        var myEvent = e || window.e;
+            myEvent.stopPropagation();
+        //console.log('Убрал нах...!');
+        $('#requests-submenu').css({display:'none'});
+    });
 }); //End of ready
 
-function getActiveTasks() {
-    var curPage = $('span[class="btn f-left active"]').html();
-    //alert($(curPage).html());
+function getCurrPage() {
+    var currPage = $('span[class="btn f-left active"]').html();
+    if (currPage == null) {
+        currPage = 1;
+    }
+    return currPage;
+}
+
+function getActiveTasks(type, pageNum) {
+    if (pageNum == null) {
+        var currPage = getCurrPage();
+    } else {
+        var currPage = pageNum;
+    }
     $.ajax({
-            url: 'http://storm/console/activeTasks?curPage='+curPage,
+            //url: 'http://acs-storm/console/activeTasks?curPage='+curPage,
+            url: 'http://storm/console/'+type+'?currPage='+currPage,
            type: 'GET',
         success: function(data) {
-                    $('#sub-menu1').remove();
+                    $('#requests-submenu').css('display', 'none');
                     var content = $('#content');
                         content.html('');
                         content.append(data);
@@ -130,14 +161,24 @@ function getActiveTasks() {
     });
 }
 
-function showSubMenu() {
-    $('li').append("<ul id='sub-menu1'>\
-                        <li id='active'>Активные</li>\
-                        <li id='closed'>Закрытые</li>\
-                    </ul>");
-    $('#sub-menu1').css({display:'block'});
-}
-function hideSubMenu() {
-    console.log('Убрал нах...!');
-    $('#sub-menu1').css({display:'none'});
+function getClosedTasks(type, pageNum) {
+    if (pageNum == null) {
+        var currPage = getCurrPage();
+    } else {
+        var currPage = pageNum;
+    }
+    $.ajax({
+            //url: 'http://acs-storm/console/activeTasks?curPage='+curPage,
+            url: 'http://storm/console/'+type+'?currPage='+currPage,
+           type: 'GET',
+        success: function(data) {
+                    $('#requests-submenu').css('display', 'none');
+                    var content = $('#content');
+                        content.html('');
+                        content.append(data);
+                 },
+          error: function() {
+                    console.log('Script error!');
+                 }        
+    });
 }

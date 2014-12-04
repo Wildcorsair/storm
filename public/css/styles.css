@@ -52,6 +52,15 @@ input, button {
     position: absolute;
     font-weight: bold;
 }
+#version {
+    color: #bcbcbc;
+    width: 80px;
+    height: 20px;
+    margin-top: 75px;
+    margin-right: 10px;
+    float: right;
+    text-align: right;
+}
 #shadow {
     height: 1px;
     background-color: #34a9f3;
@@ -87,20 +96,20 @@ input, button {
     display: block;
     text-decoration: none;
 }
-#menu li #sub-menu1 li{
+#menu li #requests-submenu li{
     color: #fff;
     display: block;
     padding-left: 25px;
     width: 155px; 
 }
-#menu li #sub-menu1 li:hover {
+#menu li #requests-submenu li:hover {
     background-color: #acacac;
 }
 
-/*#menu li:hover > #sub-menu1 {
+/*#menu li:hover > #requests-submenu {
     display: block;
 }*/
-#sub-menu1 {
+#requests-submenu {
     display: none;
     left: 0;
     top: 45px;
