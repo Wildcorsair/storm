@@ -1,9 +1,9 @@
 <div>
-    <div>
+    <!--<div>
       Отображение за период&nbsp;
       <button class='btn normal' name='select'>Выбрать</button>
       <br /><br />
-    </div>
+    </div>-->
     <?php
         $dataSet = $this->model->closedTasksList($this->currentPage);
         if (!empty($dataSet)) {

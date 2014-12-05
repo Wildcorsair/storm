@@ -94,10 +94,17 @@ $(document).ready(function() {
     $('#content').on('click', '.page-num', function(e) {
         var myEvent = e || window.e;
         var myTarget = myEvent.target || myEvent.srcElement;
-        var pageNum = $(myTarget).html();
+        //var pageNum = $(myTarget).html();
+        var pageNum = $(myTarget).data('value');
         var tasksType = $('table').data('value');
         getActiveTasks(tasksType, pageNum);
     });
+
+    /*$('#content').on('click', '.ico-last', function() {
+        var pageNum = $('.ico-last').data('value');
+        console.log(pageNum);
+    });*/
+
     $('#content').on('click', '.btn-tb.ico-edit', function(e) {
         var myEvent = e || window.e;
         var btn = myEvent.target || myEvent.srcElement;
@@ -115,6 +122,7 @@ $(document).ready(function() {
             });
         }        
     });
+
     $('#menu').on('mouseover', 'li[id="requests"]', function(e) {
         var myEvent = e || window.e;
             myEvent.stopPropagation();
@@ -132,7 +140,7 @@ $(document).ready(function() {
 }); //End of ready
 
 function getCurrPage() {
-    var currPage = $('span[class="btn f-left active"]').html();
+    var currPage = $('span[class="btn f-left active"]').data('value');
     if (currPage == null) {
         currPage = 1;
     }

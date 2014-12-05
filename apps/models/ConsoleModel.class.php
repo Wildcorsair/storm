@@ -121,7 +121,7 @@ class ConsoleModel extends BDatabase {
     *              "Только чтение"
     */
 
-    public function dataGrid($dataSet,
+    /*public function dataGrid($dataSet,
                              $fieldsList,
                              $tasksType,
                              $title,
@@ -173,8 +173,62 @@ class ConsoleModel extends BDatabase {
                         </td>
                     </tr>
                 </tfoot></table>";
-    }
+    }*/
     
+    public function dataGrid($dataSet,
+                             $fieldsList,
+                             $tasksType,
+                             $title,
+                             $colspan,
+                             $readOnly) {
+        $startRec = $this->_offset + 1;
+        $recCount = count($dataSet);
+        $endRec = $this->_offset + $recCount;
+        echo "<table class='grey-table' data-value='{$tasksType}'><thead>
+                <tr><th class='title' colspan='{$colspan}'>{$title}</th></tr>
+                <tr>";
+        foreach ($fieldsList as $fieldName => $fieldCaption) {
+            echo "<th width='{$fieldCaption[1]}'>".$fieldCaption[0]."</th>";
+        }
+        if ($readOnly !== true) {
+            echo '<th width="24"></th><th width="24"></th>';
+        }
+        echo '</tr></thead><tbody>';
+        foreach ($dataSet as $record) {
+            echo "<tr>";
+                foreach ($fieldsList as $fieldName => $fieldCaption) {
+                    if (($fieldName == 'fstartDateTime') || ($fieldName == 'fendDateTime')) {
+                        echo "<td width='{$fieldCaption[1]}'>".$this->dateTimeConvert($record->$fieldName)."</td>";
+                    } else {
+                        echo "<td width='{$fieldCaption[1]}'>".htmlspecialchars($record->$fieldName)."</td>";
+                    }
+                }
+            if ($readOnly !== true) {
+                echo "<td class='btn-cont'>
+                            <button class='btn-tb ico-edit' data-value='{$record->fid}'></button>
+                        </td>
+                        <td class='btn-cont'>
+                            <a class='btn-tb ico-delete'
+                                href='#'></a>
+                        </td>
+                        </tr>";
+            }
+        }
+        echo "</tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan='{$colspan}'>
+                            <div class='pagination'>";
+                            echo $this->pagination($this->currentPage);
+        echo                "</div>
+                            <div class='counter'>
+                                {$startRec} - {$endRec} из {$this->rc} записей
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot></table>";
+    }
+
     public function pagination( $currentPage,
                                     $linkCount=5,
                                     $paramStr=null ) {
@@ -217,10 +271,10 @@ class ConsoleModel extends BDatabase {
                     for ($pageNum = $leftOffset; $pageNum <= $linkCount; $pageNum++) {
                         $this->linkageNavString($pageStr, $pageNum, $currentPage);
                     }
-                    $currentPage = $currentPage + 1;
-                    $pageStr .= "<button class='btn f-left ico-next'
-                                 data-value='{$currentPage}'></button>";
-                    $pageStr .= "<button class='btn f-left ico-last'
+                    $nextPageNum = $currentPage + 1;
+                    $pageStr .= "<button class='btn f-left page-num ico-next'
+                                 data-value='{$nextPageNum}'></button>";
+                    $pageStr .= "<button class='btn f-left page-num ico-last'
                                  data-value='{$pageCount}'></button>";
                 }
             } else if ($rightOffset >= $pageCount - 1) {
@@ -235,9 +289,11 @@ class ConsoleModel extends BDatabase {
                         $this->linkageNavString($pageStr, $pageNum, $currentPage, $paramStr);
                     }
                 } else {
-                    $pageStr .= "<button class='btn f-left ico-first'
+                    $prevPageNum = $currentPage - 1;
+                    $pageStr .= "<button class='btn f-left ico-first page-num'
                                  data-value='1'></button>";
-                    $pageStr .= "<button class='btn f-left ico-prev'></button>";
+                    $pageStr .= "<button class='btn f-left ico-prev page-num'
+                                 data-value='{$prevPageNum}'></button>";
                     $leftOffset++;
                     for ($pageNum = $leftOffset; $pageNum <= $pageCount; $pageNum++) {
                         $this->linkageNavString($pageStr, $pageNum, $currentPage, $paramStr);
@@ -249,13 +305,18 @@ class ConsoleModel extends BDatabase {
                     Блок вывода средней части пагинации с кнопками "first" и
                     "last" по краям
                 */
-                $pageStr .= "<button class='btn f-left ico-first'></button>";
-                $pageStr .= "<button class='btn f-left ico-prev'></button>";
+                $prevPageNum = $currentPage - 1;
+                $nextPageNum = $currentPage + 1;
+                $pageStr .= "<button class='btn f-left ico-first page-num'
+                             data-value='1'></button>";
+                $pageStr .= "<button class='btn f-left ico-prev page-num'
+                             data-value='{$prevPageNum}'></button>";
                 for ($pageNum = $leftOffset; $pageNum <= $rightOffset; $pageNum++) {
                     $this->linkageNavString($pageStr, $pageNum, $currentPage, $paramStr);
                 }
-                $pageStr .= "<button class='btn f-left ico-next'></button>";
-                $pageStr .= "<button class='btn f-left ico-last'
+                $pageStr .= "<button class='btn f-left ico-next page-num'
+                             data-value='{$nextPageNum}'></button>";
+                $pageStr .= "<button class='btn f-left ico-last page-num'
                                 data-value='{$pageCount}'></button>";
             }
         }
@@ -264,10 +325,11 @@ class ConsoleModel extends BDatabase {
     
     private function linkageNavString(&$linkStr, $pageNum, $currentPage, $paramStr=null) {
         if ($pageNum == $currentPage) {
-            $linkStr .= "<span class='btn f-left active' class='curr-page'>{$pageNum}</span>\n";
-            //$linkStr .= "<a class='btn f-left active' href='/".$route."/{$pageNum}{$paramStr}' class='curr-page'>{$pageNum}</a>\n";
+            $linkStr .= "<span class='btn f-left active' class='curr-page'
+                         data-value='{$pageNum}'>{$pageNum}</span>\n";
         } else {
-            $linkStr .= "<button class='btn f-left page-num'>{$pageNum}</button>\n";
+            $linkStr .= "<button class='btn f-left page-num'
+                         data-value='{$pageNum}'>{$pageNum}</button>\n";
         }
     }
     
