@@ -2,7 +2,7 @@
 
 class BDatabase extends DataAccess {
     public function __construct() {
-        parent::__construct("localhost", "root", "k13ju357", "stormBase");
+        parent::__construct("localhost", "root", "", "stormBase");
     }
 
     /*

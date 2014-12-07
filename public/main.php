@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <link rel='stylesheet' type='text/css' 
-            href='http://dbtest.org/UI-Controls/css/controls.css'>
+            href='http://UI-Controls/css/controls.css'>
     <link rel='stylesheet' type='text/css' 
             href='http://storm/public/css/styles.css'>
     <script type="text/javascript" 

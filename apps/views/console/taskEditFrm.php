@@ -180,4 +180,4 @@
     </div>
 </div>
     <script type="text/javascript" 
-                src="http://dbtest.org/UI-Controls/js/function.js"></script>
+                src="http://UI-Controls/js/function.js"></script>
