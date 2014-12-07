@@ -18,13 +18,14 @@
     <div id='page-wrapper'>
         <div id='header'>
             <div id='logo'>Storm</div>
+            <div id='version'>v.1.0.0.1</div>
         </div>
         <div id='shadow'></div>
         <div id='menu'>
             <ul>
-                <li>
+                <li id='requests'>
                     <a href='#'>Заявки</a>
-                    <ul id='sub-menu1'>
+                    <ul id='requests-submenu'>
                         <li id='active'>Активные</li>
                         <li id='closed'>Закрытые</li>
                     </ul>

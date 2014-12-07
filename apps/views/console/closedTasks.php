@@ -1,10 +1,11 @@
 <div>
-    <div>
-      <button class='btn large' name='taskAdd'>Добавить задание</button>
+    <!--<div>
+      Отображение за период&nbsp;
+      <button class='btn normal' name='select'>Выбрать</button>
       <br /><br />
-    </div>
+    </div>-->
     <?php
-        $dataSet = $this->model->avtiveTasksList($this->currentPage);
+        $dataSet = $this->model->closedTasksList($this->currentPage);
         if (!empty($dataSet)) {
             $fields = array('fphoneNumber'      => 'Номер',
                             'fboardName'        => 'Наименование платы',
@@ -15,9 +16,10 @@
                             'fendDateTime'      => 'Дата ремонта');
             $this->model->dataGrid($dataSet,
                                    $fields,
-                                   'console/active',
-                                   'Активные задания',
-                                   10);
+                                   'closedTasks',
+                                   'Закрытые задания',
+                                   8,
+                                   true);
         }
     ?>
 </div>
