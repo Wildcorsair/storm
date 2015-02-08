@@ -188,19 +188,19 @@ class ConsoleModel extends BDatabase {
                 <tr><th class='title' colspan='{$colspan}'>{$title}</th></tr>
                 <tr>";
         foreach ($fieldsList as $fieldName => $fieldCaption) {
-            echo "<th width='{$fieldCaption[1]}'>".$fieldCaption[0]."</th>";
+            echo "<th>".$fieldCaption[0]."</th>";
         }
         if ($readOnly !== true) {
-            echo '<th width="24"></th><th width="24"></th>';
+            echo '<th></th><th></th>';
         }
         echo '</tr></thead><tbody>';
         foreach ($dataSet as $record) {
             echo "<tr>";
                 foreach ($fieldsList as $fieldName => $fieldCaption) {
                     if (($fieldName == 'fstartDateTime') || ($fieldName == 'fendDateTime')) {
-                        echo "<td width='{$fieldCaption[1]}'>".$this->dateTimeConvert($record->$fieldName)."</td>";
+                        echo "<td>".$this->dateTimeConvert($record->$fieldName)."</td>";
                     } else {
-                        echo "<td width='{$fieldCaption[1]}'>".htmlspecialchars($record->$fieldName)."</td>";
+                        echo "<td>".htmlspecialchars($record->$fieldName)."</td>";
                     }
                 }
             if ($readOnly !== true) {
