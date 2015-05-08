@@ -6,18 +6,18 @@
     <?php
         $dataSet = $this->model->activeTasksList($this->currentPage);
         if (!empty($dataSet)) {
-            $fields = array('fphoneNumber'      => array('Номер', 5),
-                            'fboardName'        => array('Наименование платы', 15),
-                            'fport'             => array('Порт', '5'),
-                            'fdamageReason'     => array('Причина повреждения', '45'),
-                            'frepairNote'       => array('Заметка о ремонте', '45'),
-                            'fstartDateTime'    => array('Дата регистрации', '10'),
-                            'fendDateTime'      => array('Дата ремонта', '10'));
+            $fields = array('fphoneNumber'      => 'Номер',
+                            'fboardName'        => 'Наименование платы',
+                            'fport'             => 'Порт',
+                            'fdamageReason'     => 'Причина повреждения',
+                            'frepairNote'       => 'Заметка о ремонте',
+                            'fstartDateTime'    => 'Дата регистрации',
+                            'fendDateTime'      => 'Дата ремонта');
             $this->model->dataGrid($dataSet,
                                    $fields,
                                    'activeTasks',
                                    'Активные задания',
-                                   10,
+                                   9,
                                    false);
         }
     ?>

@@ -121,7 +121,7 @@ class ConsoleModel extends BDatabase {
     *              "Только чтение"
     */
 
-    /*public function dataGrid($dataSet,
+    public function dataGrid($dataSet,
                              $fieldsList,
                              $tasksType,
                              $title,
@@ -147,60 +147,6 @@ class ConsoleModel extends BDatabase {
                         echo "<td>".$this->dateTimeConvert($record->$fieldName)."</td>";
                     } else {
                         echo "<td>".htmlspecialchars($record->$fieldName)."</td>";
-                    }
-                }
-            if ($readOnly !== true) {
-                echo "<td class='btn-cont'>
-                            <button class='btn-tb ico-edit' data-value='{$record->fid}'></button>
-                        </td>
-                        <td class='btn-cont'>
-                            <a class='btn-tb ico-delete'
-                                href='#'></a>
-                        </td>
-                        </tr>";
-            }
-        }
-        echo "</tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan='{$colspan}'>
-                            <div class='pagination'>";
-                            echo $this->pagination($this->currentPage);
-        echo                "</div>
-                            <div class='counter'>
-                                {$startRec} - {$endRec} из {$this->rc} записей
-                            </div>
-                        </td>
-                    </tr>
-                </tfoot></table>";
-    }*/
-    
-    public function dataGrid($dataSet,
-                             $fieldsList,
-                             $tasksType,
-                             $title,
-                             $colspan,
-                             $readOnly) {
-        $startRec = $this->_offset + 1;
-        $recCount = count($dataSet);
-        $endRec = $this->_offset + $recCount;
-        echo "<table class='grey-table' data-value='{$tasksType}'><thead>
-                <tr><th class='title' colspan='{$colspan}'>{$title}</th></tr>
-                <tr>";
-        foreach ($fieldsList as $fieldName => $fieldCaption) {
-            echo "<th width='{$fieldCaption[1]}'>".$fieldCaption[0]."</th>";
-        }
-        if ($readOnly !== true) {
-            echo '<th width="24"></th><th width="24"></th>';
-        }
-        echo '</tr></thead><tbody>';
-        foreach ($dataSet as $record) {
-            echo "<tr>";
-                foreach ($fieldsList as $fieldName => $fieldCaption) {
-                    if (($fieldName == 'fstartDateTime') || ($fieldName == 'fendDateTime')) {
-                        echo "<td width='{$fieldCaption[1]}'>".$this->dateTimeConvert($record->$fieldName)."</td>";
-                    } else {
-                        echo "<td width='{$fieldCaption[1]}'>".htmlspecialchars($record->$fieldName)."</td>";
                     }
                 }
             if ($readOnly !== true) {
