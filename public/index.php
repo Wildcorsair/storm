@@ -5,7 +5,7 @@
     <link rel='stylesheet' type='text/css' 
             href='http://storm/public/css/styles.css'>
     <link rel='stylesheet' type='text/css' 
-            href='http://UI-Controls/css/controls.css'>
+            href='http://dbtest.org/UI-Controls/css/controls.css'>
     <title>Wellcome to the Storm</title>
 </head>
 <body>

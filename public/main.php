@@ -3,13 +3,13 @@
 <head>
     <meta charset='utf-8'>
     <link rel='stylesheet' type='text/css' 
-            href='http://UI-Controls/css/controls.css'>
+            href='http://dbtest.org/UI-Controls/css/controls.css'>
     <link rel='stylesheet' type='text/css' 
             href='http://storm/public/css/styles.css'>
     <script type="text/javascript" 
             src="http://storm/public/js/jquery-1.11.0.min.js"></script>
-    <!--<script type="text/javascript" 
-                src="http://dbtest.org/UI-Controls/js/function.js"></script>-->
+    <script type="text/javascript" 
+                src="http://dbtest.org/UI-Controls/js/function.js"></script>
     <script type="text/javascript" 
             src="http://storm/public/js/functions.js"></script>            
     <title>Storm</title>
